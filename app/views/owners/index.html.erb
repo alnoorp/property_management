@@ -1,0 +1,11 @@
+<h1>Owner Listing</h1>
+
+<%= link_to 'Add Owner', new_owner_path %>
+<br />
+<hr />
+<% @owners.each do |owner| %>
+  <%= owner.first_name %> <%= owner.last_name %><br />
+  <%= mail_to owner.email %><br />
+  <%= owner.company %><br />
+  <hr />
+<% end %>
