@@ -1,0 +1,10 @@
+<h1>Add New Building</h1>
+
+<%= simple_form_for @building do |f| %>
+  <%= f.input :street_address, label: 'Street Address' %>
+  <%= f.input :city %>
+  <%= f.input :state, collection: Building::STATES %>
+  <%= f.input :postal_code, label: 'Postal Code' %>
+  <%= f.input :description %>
+  <%= f.submit 'Save Building' %>
+<% end %>

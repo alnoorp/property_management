@@ -18,15 +18,16 @@ feature 'user adds building', %Q{
   #   can record another building
 
   scenario 'required information is supplied in required format' do
-    visit new_building
+    visit buildings_path
     click_link 'Add Building'
     fill_in 'Street Address', with: '123 Any Street'
     fill_in 'City', with: 'Springfield'
-    fill_in 'State', with: 'MA'
+    select 'MA', from: 'State'
     fill_in 'Postal Code', with: '02456'
     fill_in 'Description', with: 'Not just any building'
+    click_button 'Save Building'
 
-    expect(page).to have_content 'Building successfully added'
+    expect(page).to have_content 'Building successfully saved'
     expect(page).to have_content '123 Any Street'
     expect(page).to have_content 'Springfield'
     expect(page).to have_content 'MA'
@@ -36,8 +37,27 @@ feature 'user adds building', %Q{
     expect(page).to have_content 'Building Listing'
   end
 
-  scenario 'non-US state is supplied'
+  scenario 'required information is not supplied' do
+    visit buildings_path
+    click_link 'Add Building'
+    click_button 'Save Building'
 
-  scenario 'required information is not supplied'
+    within '.input.building_street_address' do
+      expect(page).to have_content "can't be blank"
+    end
 
+    within '.input.building_city' do
+      expect(page).to have_content "can't be blank"
+    end
+
+    within '.input.building_state' do
+      expect(page).to have_content "is not included in the list"
+    end
+
+    within '.input.building_postal_code' do
+      expect(page).to have_content "is invalid"
+    end
+
+    expect(page).to_not have_content 'Building successfully saved'
+  end
 end

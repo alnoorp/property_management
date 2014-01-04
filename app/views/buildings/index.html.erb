@@ -1,0 +1,13 @@
+<h1>Building Listing</h1>
+
+<%= link_to 'Add Building', new_building_path %>
+<br />
+<br />
+<hr />
+<% @buildings.each do |building| %>
+  <%= building.street_address %><br />
+  <%= building.city %>, <%= building.state %> <%= building.postal_code %><br />
+  <br />
+  <%= building.description %>
+  <hr />
+<% end %>
