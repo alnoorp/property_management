@@ -15,7 +15,7 @@ describe Owner do
 
   it { should have_many(:buildings).dependent(:nullify) }
 
-  it 'should delete primary key from associated buildings' do
+  it 'when deleted should also delete primary key from associated buildings' do
     owner = FactoryGirl.create(:owner)
     building = FactoryGirl.create(:building)
 
@@ -23,6 +23,7 @@ describe Owner do
     building.save
     owner.destroy
     building.reload
+
     expect(building.owner).to be_nil
   end
 end
