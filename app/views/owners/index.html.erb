@@ -7,5 +7,9 @@
   Name: <%= owner.first_name %> <%= owner.last_name %><br />
   Email: <%= mail_to owner.email %><br />
   Company: <%= owner.company %><br />
+  <br />
+  <div id="<%= owner.id %>">
+    <%= link_to 'Delete', owner, method: :delete, data: { confirm: 'Are you sure?'}, id: owner.id %>
+  </div>
   <hr />
 <% end %>
