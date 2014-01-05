@@ -18,6 +18,12 @@ class OwnersController < ApplicationController
     end
   end
 
+  def destroy
+    @owner = Owner.find(params[:id])
+    @owner.destroy
+    redirect_to owners_path, notice: 'Owner deleted'
+  end
+
   private
 
   def owner_params

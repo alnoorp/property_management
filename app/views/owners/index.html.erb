@@ -4,8 +4,8 @@
 <br />
 <hr />
 <% @owners.each do |owner| %>
-  <%= owner.first_name %> <%= owner.last_name %><br />
-  <%= mail_to owner.email %><br />
-  <%= owner.company %><br />
+  Name: <%= owner.first_name %> <%= owner.last_name %><br />
+  Email: <%= mail_to owner.email %><br />
+  Company: <%= owner.company %><br />
   <hr />
 <% end %>

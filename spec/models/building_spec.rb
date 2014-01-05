@@ -17,4 +17,6 @@ describe Building do
 
   it { should have_valid(:description).when('This is a building', *blanks) }
 
+  it { should belong_to(:owner) }
+
 end

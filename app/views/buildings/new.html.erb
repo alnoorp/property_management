@@ -6,5 +6,6 @@
   <%= f.input :state, collection: Building::STATES %>
   <%= f.input :postal_code, label: 'Postal Code' %>
   <%= f.input :description %>
+  <%= f.association :owner, label_method: :full_name %>
   <%= f.submit 'Save Building' %>
 <% end %>

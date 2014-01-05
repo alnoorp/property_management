@@ -13,4 +13,9 @@ describe Owner do
     'example@', '@.com', '@', 'example@', *blanks) }
   it { should have_valid(:email).when('john.smith@email.com') }
 
+  context 'user deletes owner and foreign key from associated building' do
+  # * If I delete an owner, the owner and its primary key should
+  #   no longer be associated with any properties
+    it { should have_many(:buildings).dependent(:nullify) }
+  end
 end

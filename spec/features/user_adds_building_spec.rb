@@ -16,14 +16,20 @@ feature 'user adds building', %Q{
   #   formats, the building is not recorded and I am presented with errors
   # * Upon successfully creating a building, I am redirected so that I
   #   can record another building
+  # * When recording a building, I want to optionally associate
+  #   the building with its rightful owner
 
   scenario 'required information is supplied in required format' do
+    Owner.create!(first_name: 'John', last_name: 'Smith',
+      email: 'john.smith@email.com')
+
     visit buildings_path
     click_link 'Add Building'
     fill_in 'Street Address', with: '123 Any Street'
     fill_in 'City', with: 'Springfield'
     select 'MA', from: 'State'
     fill_in 'Postal Code', with: '02456'
+    select 'John Smith', from: 'Owner'
     fill_in 'Description', with: 'Not just any building'
     click_button 'Save Building'
 

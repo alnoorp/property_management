@@ -5,9 +5,11 @@
 <br />
 <hr />
 <% @buildings.each do |building| %>
-  <%= building.street_address %><br />
-  <%= building.city %>, <%= building.state %> <%= building.postal_code %><br />
+  Address: <%= building.street_address %>, <%= building.city %>,
+    <%= building.state %> <%= building.postal_code %><br />
   <br />
-  <%= building.description %>
+  Owner: <%= building.owner_name %><br />
+  <br />
+  Description: <%= building.description %><br />
   <hr />
 <% end %>
